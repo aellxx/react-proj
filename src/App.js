@@ -2,6 +2,16 @@ import Button from "./Button";
 import styles from "./App.module.css"
 import {useState, useEffect} from "react";
 
+function Hello() {
+  // function to run when component is destroyed
+  useEffect(() => {
+    console.log("hi")
+    return () => console.log("bye");
+  }, []);
+
+  return <h1>hi</h1>
+}
+
 function App() {
   const [counter, setValue] = useState(0);
   const [keyword, setKeyWord] = useState("");
@@ -14,8 +24,6 @@ function App() {
     // saving the user input to the state "keyword"
     setKeyWord(event.target.value);
   }
-
-  console.log('I run all the time');
 
   // run every time counter changes
   useEffect(
@@ -32,6 +40,9 @@ function App() {
     [keyword] 
   );
 
+  const [showing, setShowing] = useState(false);
+  const onClick2 = () => setShowing(prev => !prev);
+
   return (
     <div>
       <input 
@@ -42,6 +53,9 @@ function App() {
       />
       <h1 className={styles.title}>{counter}</h1>
       <button onClick={onClick}>click me!</button>
+
+      {showing ? <Hello /> : null}
+      <button onClick={onClick2}>{showing ? "Hide": "Show"}</button>
     </div>
   );
 }
