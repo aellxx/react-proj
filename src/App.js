@@ -7,13 +7,16 @@ function App() {
   const [keyword, setKeyWord] = useState("");
 
   const onClick = () => {
+    // increment click count and update UI
     setValue((prev) => prev+1);
   }
   const onChange = (event) => {
+    // saving the user input to the state "keyword"
     setKeyWord(event.target.value);
   }
 
   console.log('I run all the time');
+
   // run every time counter changes
   useEffect(
     () => {console.log("COUNT:", counter);}, 
@@ -26,8 +29,8 @@ function App() {
         console.log("SEARCH FOR", keyword);
       }
     },
-    [keyword] // run every time the keyword changes
-  )
+    [keyword] 
+  );
 
   return (
     <div>
