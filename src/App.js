@@ -6,6 +6,7 @@ function Hello() {
   // function to run when component is destroyed
   useEffect(() => {
     console.log("hi")
+    // runs when component is destroyed
     return () => console.log("bye");
   }, []);
 
@@ -54,7 +55,7 @@ function App() {
       <h1 className={styles.title}>{counter}</h1>
       <button onClick={onClick}>click me!</button>
 
-      {showing ? <Hello /> : null}
+      {showing ? <Hello /> : null /* if not showing, destroy component */} 
       <button onClick={onClick2}>{showing ? "Hide": "Show"}</button>
     </div>
   );
